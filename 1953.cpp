@@ -41,6 +41,8 @@ bool (*to[])(int)   = {isBottomOpen, isTopOpen, isLeftOpen, isRightOpen};
 
 int main(int argc, char **argv)
 {
+    ios_base::sync_with_stdio(false);
+
     int test_case;
     int T;
 
@@ -60,12 +62,16 @@ int main(int argc, char **argv)
         q.push(make_pair(R, C));
         distance_map[R][C] = 1;
 
+        int cnt = 0;
+
         while (!q.empty()) {
             pair<int, int> cur = q.front();
             q.pop();
 
             int pipe = getPipe(cur);
             int distance = getDistance(cur);
+
+            cnt++;
 
             if (distance >= L)
                 continue;
@@ -81,13 +87,6 @@ int main(int argc, char **argv)
                 }
             }
         }
-
-        int cnt = 0;
-
-        for (int i = 0; i < N; i++)
-            for (int j = 0; j < M; j++)
-                if (distance_map[i][j] <= L)
-                    cnt++;
 
         printf("#%d %d\n", test_case, cnt);
     }
