@@ -41,6 +41,8 @@ int main(int argc, char **argv)
 			}
         }
 
+        int flag = false;
+
         while(!q.empty()) {
             int y = q.front().first;
             int x = q.front().second;
@@ -60,11 +62,12 @@ int main(int argc, char **argv)
                 }
                 else if (arr[ny][nx] == '3') {
 					res = dis[y][x];
+                    flag = true;
                     break;
                 }
             }
 
-            if (res != 0)
+            if (flag)
                 break;
         }
 
